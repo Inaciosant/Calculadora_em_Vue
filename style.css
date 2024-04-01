@@ -17,7 +17,7 @@ body{
     background-color: #334195;
     width: 150px;
     border-radius: 5px;
-    box-shadow: black 5px;
+    box-shadow: white 100%;
     padding: 7px;
 }
 
@@ -25,8 +25,8 @@ button{
     width: 35px;
     height: 35px;
     border: none ;
-    margin: 2px;
-    border-radius: 5px;
+    margin: 3px;
+    border-radius: 8px;
     background-color: lightcyan;
 }
 .operador{
