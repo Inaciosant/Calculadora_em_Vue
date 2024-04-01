@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - Em VUE</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="calculadora">
+            <div class=" display">
+                {{ display }}
+            </div>
+            
+            <div class="linha">
+                <!-- V-on:click = @click -->
+                <button class="operador" @click="">C</button>
+            </div>
+            <div class="linha">
+                <button  @click="">7</button>
+                <button  @click="">8</button>
+                <button  @click="">9</button>
+                <button class="operador" @click="">/</button>
+            </div>
+
+            <div class="linha">
+                <button  @click="">4</button>
+                <button  @click="">5</button>
+                <button  @click="">6</button>
+                <button class="operador" @click="">x</button>
+            </div>
+            <div class="linha">
+                <button  @click="">1</button>
+                <button  @click="">2</button>
+                <button  @click="">3</button>
+                <button class="operador" @click="">-</button>
+            </div>
+            <div class="linha">
+                <button   class="decimal">.</button>
+                <button  @click="">0</button>
+                <button class="igual"  @click="">=</button>
+                <button class="operador" @click="">+</button>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+    
+</body>
+</html>
+
+<script src="index.js"></script>
