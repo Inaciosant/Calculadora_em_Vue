@@ -1,58 +1,61 @@
-const { createApp } = Vue;
-
-createApp({
+const app = Vue.createApp({
     data() {
         return {
-            display: "0",
-            numeroAnterior: null,
-            numeroAtual: null,
-            operador: null
-        }
+            display: '0',
+            currentNumber: '',
+            previousNumber: null,
+            operator: null,
+            isNewCalculation: false
+        };
     },
     methods: {
-        lidarBotao(valor) {
-            switch (valor)
-            {
-                case '*':
-                case '/':
-                case '-':
-                case '+':
-                    this.lidarOperador(valor);
-                    break;
-
-                case '.':
-                    this.lidarDecimal();
-                    break;
-
-                case 'C':
-                    this.lidarLimpar();
-                    break;
-
-                case '=':
-                    this.lidarIgual();
-                    break;
-
-                default:
-                    this.lidarNumero(valor);
+        appendNumber(number) {
+            if (this.isNewCalculation) {
+                this.display = '';
+                this.isNewCalculation = false;
             }
+            this.currentNumber += number;
+            this.display = this.currentNumber;
         },
-        lidarOperador(valor) {
-            console.log("O botão digitado foi: ", valor);
+        setOperator(operator) {
+            this.operator = operator;
+            this.previousNumber = parseFloat(this.currentNumber);
+            this.currentNumber = '';
         },
-        lidarDecimal() {
-            console.log("Entrou no decimal");
+        calculate() {
+            let result = 0;
+            const current = parseFloat(this.currentNumber);
+
+            switch (this.operator) {
+                case '+':
+                    result = this.previousNumber + current;
+                    break;
+                case '-':
+                    result = this.previousNumber - current;
+                    break;
+                case 'x':
+                    result = this.previousNumber * current;
+                    break;
+                case '/':
+                    result = this.previousNumber / current;
+                    break;
+                default:
+                    return;
+            }
+
+            this.display = result.toString();
+            this.isNewCalculation = true;
+            this.currentNumber = result.toString();
+            this.previousNumber = null;
+            this.operator = null;
         },
-        lidarLimpar() {
+        clear() {
             this.display = '0';
-            this.numeroAtual = null;
-            this.numeroAnterior = null;
-            this.operador = null;
-        },
-        lidarIgual() {
-            console.log("Entrou no Igual");
-        },
-        lidarNumero(valor) {
-            console.log("O botão digitado foi: ", valor);
+            this.currentNumber = '';
+            this.previousNumber = null;
+            this.operator = null;
         }
     }
-}).mount("#app");
+});
+
+app.mount('#app');
